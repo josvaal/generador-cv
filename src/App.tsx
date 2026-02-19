@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { pdf } from '@react-pdf/renderer'
 import cvData from './assets/cv-data.json'
 import type { CVData } from './types/cv.types'
@@ -7,20 +7,37 @@ import { basicTheme } from './themes/basic'
 import { academicoTheme } from './themes/academico'
 import Toolbar from './components/toolbar/Toolbar'
 import CVPreview from './components/preview/CVPreview'
+import { processGrayscaleImage } from './lib/image-utils'
+import profilePhoto from './assets/profile.png'
 import './App.css'
 
 registerTheme(basicTheme)
 registerTheme(academicoTheme)
 
 function App() {
-  const [data] = useState<CVData>(cvData as CVData)
+  const [baseData] = useState<CVData>(cvData as CVData)
+  const [photoGrayscale, setPhotoGrayscale] = useState<string | null>(null)
   const [selectedTheme, setSelectedTheme] = useState(() => {
-    if (data.activeTheme && getTheme(data.activeTheme)) {
-      return data.activeTheme
+    if (baseData.activeTheme && getTheme(baseData.activeTheme)) {
+      return baseData.activeTheme
     }
     return 'basic'
   })
   const [isGenerating, setIsGenerating] = useState(false)
+
+  useEffect(() => {
+    processGrayscaleImage(profilePhoto)
+      .then(setPhotoGrayscale)
+      .catch(console.error)
+  }, [])
+
+  const data: CVData = {
+    ...baseData,
+    basicInfo: {
+      ...baseData.basicInfo,
+      photo: selectedTheme === 'academico' && photoGrayscale ? photoGrayscale : profilePhoto,
+    },
+  }
 
   const theme = getTheme(selectedTheme)
   const themes = getAllThemes()
@@ -43,6 +60,17 @@ function App() {
     } finally {
       setIsGenerating(false)
     }
+  }
+
+  if (!photoGrayscale) {
+    return (
+      <div className="app-container">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Cargando...</p>
+        </div>
+      </div>
+    )
   }
 
   return (

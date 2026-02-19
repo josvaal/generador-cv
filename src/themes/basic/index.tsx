@@ -1,7 +1,6 @@
 import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Font } from '@react-pdf/renderer'
 import type { CVData } from '../../types/cv.types'
 import { iconPaths } from '../../lib/icons'
-import profilePhoto from '../../assets/profile.png'
 
 Font.register({
   family: 'DMSans',
@@ -303,9 +302,11 @@ function cleanText(html: string): string {
 function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
   return (
     <View style={styles.header} wrap={false}>
-      <View style={styles.photoContainer}>
-        <Image src={profilePhoto} style={styles.photo} />
-      </View>
+      {basicInfo.photo && (
+        <View style={styles.photoContainer}>
+          <Image src={basicInfo.photo} style={styles.photo} />
+        </View>
+      )}
       <View style={styles.headerInfo}>
         <Text style={styles.name}>{basicInfo.name}</Text>
         <Text style={styles.role}>{basicInfo.role}</Text>

@@ -1,6 +1,5 @@
 import { Document, Page, View, Text, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import type { CVData } from '../../types/cv.types'
-import profilePhoto from '../../assets/profile.png'
 
 Font.register({
   family: 'Times New Roman',
@@ -21,13 +20,12 @@ const COLORS = {
 
 const SPACING = {
   page: 36,
-  sectionGap: 16,
+  sectionGap: 18,
   itemGap: 10,
-  headerGap: 6,
 }
 
 const FONTS = {
-  title: 22,
+  title: 24,
   subtitle: 14,
   body: 11,
 }
@@ -47,11 +45,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   photoContainer: {
-    marginRight: 16,
+    marginRight: 20,
   },
   photo: {
-    width: 80,
-    height: 80,
+    width: 85,
+    height: 85,
     borderRadius: 2,
   },
   headerText: {
@@ -59,16 +57,26 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: FONTS.title,
-    fontWeight: 'normal',
+    fontWeight: 'bold',
     color: COLORS.black,
-    marginBottom: 4,
+    marginBottom: 2,
     fontFamily: 'Times New Roman',
   },
-  contactLine: {
-    fontSize: FONTS.body,
+  role: {
+    fontSize: FONTS.subtitle,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
+    marginBottom: 8,
+  },
+  contactRow: {
+    flexDirection: 'row',
     marginBottom: 2,
+  },
+  contactItem: {
+    fontSize: FONTS.body - 1,
+    color: COLORS.black,
+    fontFamily: 'Times New Roman',
+    marginRight: 12,
   },
   section: {
     marginBottom: SPACING.sectionGap,
@@ -82,19 +90,20 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     textTransform: 'uppercase',
     fontFamily: 'Times New Roman',
-    letterSpacing: 0.5,
+    letterSpacing: 1,
+    marginBottom: 4,
   },
   sectionLine: {
-    fontSize: FONTS.body,
-    color: COLORS.black,
-    fontFamily: 'Times New Roman',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.black,
     marginTop: 2,
   },
   summaryText: {
     fontSize: FONTS.body,
-    lineHeight: 1.15,
+    lineHeight: 1.25,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
+    textAlign: 'justify',
   },
   experienceItem: {
     marginBottom: SPACING.itemGap,
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginBottom: 2,
+    marginBottom: 1,
   },
   experienceRole: {
     fontSize: FONTS.body,
@@ -120,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: FONTS.body,
     color: COLORS.black,
     fontStyle: 'italic',
-    marginBottom: 4,
+    marginBottom: 3,
     fontFamily: 'Times New Roman',
   },
   achievementItem: {
@@ -136,7 +145,7 @@ const styles = StyleSheet.create({
   achievementText: {
     flex: 1,
     fontSize: FONTS.body,
-    lineHeight: 1.15,
+    lineHeight: 1.25,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
   },
@@ -147,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginBottom: 2,
+    marginBottom: 1,
   },
   educationDegree: {
     fontSize: FONTS.body,
@@ -165,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: FONTS.body,
     color: COLORS.black,
     fontStyle: 'italic',
-    marginBottom: 2,
+    marginBottom: 1,
     fontFamily: 'Times New Roman',
   },
   educationLocation: {
@@ -199,7 +208,7 @@ const styles = StyleSheet.create({
   },
   projectDescription: {
     fontSize: FONTS.body,
-    lineHeight: 1.15,
+    lineHeight: 1.25,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
   },
@@ -234,31 +243,32 @@ function SectionHeader({ title }: { title: string }) {
   return (
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionTitle}>{title}</Text>
-      <Text style={styles.sectionLine}>___________________________________________________________________________</Text>
+      <View style={styles.sectionLine} />
     </View>
   )
 }
 
 function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
-  const contactParts: string[] = []
-  if (basicInfo.email) contactParts.push(basicInfo.email)
-  if (basicInfo.phone) contactParts.push(basicInfo.phone)
-  if (basicInfo.location) contactParts.push(basicInfo.location)
-  if (basicInfo.website) contactParts.push(basicInfo.website)
-  if (basicInfo.github) contactParts.push(basicInfo.github)
-  if (basicInfo.linkedin) contactParts.push(basicInfo.linkedin)
-  
-  const contactLine = contactParts.join(' | ')
-
   return (
     <View style={styles.header}>
-      <View style={styles.photoContainer}>
-        <Image src={profilePhoto} style={styles.photo} />
-      </View>
+      {basicInfo.photo && (
+        <View style={styles.photoContainer}>
+          <Image src={basicInfo.photo} style={styles.photo} />
+        </View>
+      )}
       <View style={styles.headerText}>
         <Text style={styles.name}>{basicInfo.name}</Text>
-        <Text style={styles.contactLine}>{basicInfo.role}</Text>
-        <Text style={styles.contactLine}>{contactLine}</Text>
+        <Text style={styles.role}>{basicInfo.role}</Text>
+        <View style={styles.contactRow}>
+          {basicInfo.email && <Text style={styles.contactItem}>{basicInfo.email}</Text>}
+          {basicInfo.phone && <Text style={styles.contactItem}>{basicInfo.phone}</Text>}
+          {basicInfo.location && <Text style={styles.contactItem}>{basicInfo.location}</Text>}
+        </View>
+        <View style={styles.contactRow}>
+          {basicInfo.website && <Text style={styles.contactItem}>{basicInfo.website}</Text>}
+          {basicInfo.github && <Text style={styles.contactItem}>{basicInfo.github}</Text>}
+          {basicInfo.linkedin && <Text style={styles.contactItem}>{basicInfo.linkedin}</Text>}
+        </View>
       </View>
     </View>
   )
