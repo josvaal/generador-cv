@@ -1,0 +1,52 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Print styles */
+@media print {
+  .toolbar {
+    display: none !important;
+  }
+
+  .app-container {
+    background-color: white;
+  }
+
+  .preview-container {
+    padding: 0;
+  }
+
+  .cv-preview-container {
+    max-width: none;
+  }
+
+  .cv-preview {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  body {
+    background-color: white;
+  }
+}
