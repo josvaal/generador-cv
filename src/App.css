@@ -2,12 +2,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #e8e8e8;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
 }
 
 .preview-container {
   flex: 1;
-  padding: 70px 20px 20px;
+  padding: 84px 24px 24px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -22,14 +22,36 @@
 
 .cv-preview {
   background-color: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  display: flex;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 50px -12px rgba(0, 0, 0, 0.5),
+    0 8px 20px -8px rgba(0, 0, 0, 0.3);
   min-height: 297mm;
+  overflow: hidden;
 }
 
 .preview-error {
-  color: #d32f2f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #f87171;
   text-align: center;
-  padding: 40px;
+  padding: 60px 40px;
   font-size: 16px;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.preview-error svg {
+  opacity: 0.8;
+}
+
+.preview-error p {
+  margin: 0;
 }

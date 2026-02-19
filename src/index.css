@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -17,10 +17,36 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: #0f172a;
 }
 
 #root {
   height: 100%;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(56, 189, 248, 0.3);
+  color: inherit;
 }
 
 /* Print styles */
@@ -43,7 +69,7 @@ body {
 
   .cv-preview {
     box-shadow: none;
-    padding: 0;
+    border-radius: 0;
   }
 
   body {
