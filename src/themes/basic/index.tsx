@@ -22,12 +22,11 @@ const SPACING = {
 }
 
 const FONTS = {
-  title: 22,
-  subtitle: 11,
-  section: 10,
-  body: 9,
-  small: 8,
-  tiny: 7,
+  title: 24,
+  subtitle: 13,
+  section: 12,
+  body: 11,
+  small: 10,
 }
 
 const styles = StyleSheet.create({
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 1,
+    marginBottom: 3,
   },
   experienceRole: {
     fontSize: FONTS.body,
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
   },
   achievementBullet: {
-    width: 8,
+    width: 10,
     fontSize: FONTS.small,
     color: COLORS.accent,
   },
@@ -163,7 +162,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 1,
+    marginBottom: 3,
   },
   educationDegree: {
     fontSize: FONTS.body,
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 3,
-    fontSize: FONTS.tiny,
+    fontSize: FONTS.small,
     color: COLORS.text,
     marginRight: 4,
     marginBottom: 4,
@@ -237,12 +236,12 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   projectTech: {
-    fontSize: FONTS.tiny,
+    fontSize: FONTS.small,
     color: COLORS.muted,
   },
 })
 
-function Icon({ name, size = 9, color = COLORS.accent }: { name: keyof typeof iconPaths; size?: number; color?: string }) {
+function Icon({ name, size = 10, color = COLORS.accent }: { name: keyof typeof iconPaths; size?: number; color?: string }) {
   return (
     <Svg viewBox="0 0 256 256" width={size} height={size}>
       <Path d={iconPaths[name]} fill={color} />
@@ -283,37 +282,37 @@ function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
         <View style={styles.contactGrid}>
           {basicInfo.email && (
             <View style={styles.contactItem}>
-              <Icon name="envelope" size={8} />
+              <Icon name="envelope" size={10} />
               <Text style={styles.contactText}>{basicInfo.email}</Text>
             </View>
           )}
           {basicInfo.phone && (
             <View style={styles.contactItem}>
-              <Icon name="phone" size={8} />
+              <Icon name="phone" size={10} />
               <Text style={styles.contactText}>{basicInfo.phone}</Text>
             </View>
           )}
           {basicInfo.location && (
             <View style={styles.contactItem}>
-              <Icon name="mapPin" size={8} />
+              <Icon name="mapPin" size={10} />
               <Text style={styles.contactText}>{basicInfo.location}</Text>
             </View>
           )}
           {basicInfo.website && (
             <View style={styles.contactItem}>
-              <Icon name="globe" size={8} />
+              <Icon name="globe" size={10} />
               <Text style={styles.contactText}>{basicInfo.website}</Text>
             </View>
           )}
           {basicInfo.github && (
             <View style={styles.contactItem}>
-              <Icon name="githubLogo" size={8} />
+              <Icon name="githubLogo" size={10} />
               <Text style={styles.contactText}>{basicInfo.github}</Text>
             </View>
           )}
           {basicInfo.linkedin && (
             <View style={styles.contactItem}>
-              <Icon name="linkedinLogo" size={8} />
+              <Icon name="linkedinLogo" size={10} />
               <Text style={styles.contactText}>{basicInfo.linkedin}</Text>
             </View>
           )}
@@ -327,7 +326,7 @@ function SectionHeader({ title, iconName }: { title: string; iconName: keyof typ
   return (
     <View style={styles.sectionHeader}>
       <View style={styles.sectionIcon}>
-        <Icon name={iconName} size={10} color={COLORS.accent} />
+        <Icon name={iconName} size={12} color={COLORS.accent} />
       </View>
       <Text style={styles.sectionTitle}>{title}</Text>
     </View>
@@ -374,7 +373,7 @@ function ExperienceSection({ experiences, title }: { experiences: CVData['experi
           <View style={styles.experienceHeader}>
             <Text style={styles.experienceRole}>{exp.role}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name="calendarBlank" size={7} color={COLORS.accent} />
+              <Icon name="calendarBlank" size={10} color={COLORS.accent} />
               <Text style={styles.experienceDates}>{formatDateRange(exp.startDate, exp.endDate, exp.current)}</Text>
             </View>
           </View>
@@ -400,7 +399,7 @@ function EducationSection({ education, title }: { education: CVData['education']
           <View style={styles.educationHeader}>
             <Text style={styles.educationDegree}>{edu.degree}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name="calendarBlank" size={7} color={COLORS.accent} />
+              <Icon name="calendarBlank" size={10} color={COLORS.accent} />
               <Text style={styles.educationDates}>{formatDateRange(edu.startDate, edu.endDate, edu.current)}</Text>
             </View>
           </View>
