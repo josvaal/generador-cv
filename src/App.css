@@ -2,15 +2,16 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f0f0f0;
+  background-color: #e8e8e8;
 }
 
 .preview-container {
   flex: 1;
-  padding: 80px 20px 40px;
+  padding: 70px 20px 20px;
   display: flex;
   justify-content: center;
-  overflow-x: auto;
+  align-items: flex-start;
+  overflow: auto;
 }
 
 .cv-preview-container {
@@ -21,10 +22,9 @@
 
 .cv-preview {
   background-color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-height: 297mm; /* A4 height */
-  padding: 40px;
-  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  min-height: 297mm;
 }
 
 .preview-error {
