@@ -2,6 +2,14 @@ import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Font } from '
 import type { CVData } from '../../types/cv.types'
 import { iconPaths } from '../../lib/icons'
 
+Font.register({
+  family: 'DMSans',
+  fonts: [
+    { src: '/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf' },
+    { src: '/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf', fontStyle: 'italic' },
+  ],
+})
+
 Font.registerHyphenationCallback(word => [word])
 
 const COLORS = {
@@ -34,18 +42,20 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.page,
     paddingLeft: SPACING.page,
     paddingRight: SPACING.page,
+    fontFamily: 'DMSans',
   },
   header: {
     flexDirection: 'row',
     marginBottom: SPACING.sectionGap,
+    alignItems: 'center',
   },
   photoContainer: {
     marginRight: 18,
   },
   photo: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    width: 85,
+    height: 85,
+    borderRadius: 42,
   },
   headerInfo: {
     flex: 1,
@@ -56,12 +66,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.primary,
     marginBottom: 4,
+    fontFamily: 'DMSans',
   },
   role: {
     fontSize: FONTS.subtitle,
     color: COLORS.accent,
     fontWeight: '600',
     marginBottom: 10,
+    fontFamily: 'DMSans',
   },
   contactGrid: {
     flexDirection: 'row',
@@ -77,6 +89,7 @@ const styles = StyleSheet.create({
     fontSize: FONTS.body,
     color: COLORS.text,
     marginLeft: 5,
+    fontFamily: 'DMSans',
   },
   divider: {
     borderBottomWidth: 1.5,
@@ -103,11 +116,13 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     textTransform: 'uppercase',
     letterSpacing: 1,
+    fontFamily: 'DMSans',
   },
   summaryText: {
     fontSize: FONTS.body,
     lineHeight: 1.65,
     color: COLORS.text,
+    fontFamily: 'DMSans',
   },
   experienceItem: {
     marginBottom: SPACING.itemGap,
@@ -124,12 +139,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.primary,
     flex: 1,
+    fontFamily: 'DMSans',
   },
   experienceDates: {
     fontSize: FONTS.body,
     color: COLORS.accent,
     fontWeight: '500',
     marginLeft: 4,
+    fontFamily: 'DMSans',
   },
   experienceCompany: {
     fontSize: FONTS.body,
@@ -137,6 +154,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginBottom: 2,
     lineHeight: 1,
+    fontFamily: 'DMSans',
   },
   experienceMeta: {
     marginBottom: SPACING.itemGap,
@@ -150,12 +168,14 @@ const styles = StyleSheet.create({
     width: 10,
     fontSize: FONTS.body,
     color: COLORS.accent,
+    fontFamily: 'DMSans',
   },
   achievementText: {
     flex: 1,
     fontSize: FONTS.body,
     lineHeight: 1.5,
     color: COLORS.text,
+    fontFamily: 'DMSans',
   },
   educationItem: {
     marginBottom: SPACING.itemGap,
@@ -172,23 +192,27 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     flex: 1,
     paddingRight: 10,
+    fontFamily: 'DMSans',
   },
   educationDates: {
     fontSize: FONTS.body,
     color: COLORS.accent,
     fontWeight: '500',
     marginLeft: 4,
+    fontFamily: 'DMSans',
   },
   educationInstitute: {
     fontSize: FONTS.body,
     color: COLORS.muted,
     marginBottom: 2,
     lineHeight: 1.4,
+    fontFamily: 'DMSans',
   },
   educationLocation: {
     fontSize: FONTS.body,
     color: COLORS.light,
     lineHeight: 1.4,
+    fontFamily: 'DMSans',
   },
   skillsContainer: {
     marginBottom: 10,
@@ -207,6 +231,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.muted,
     marginBottom: 5,
+    fontFamily: 'DMSans',
   },
   skillTags: {
     flexDirection: 'row',
@@ -221,6 +246,7 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     marginRight: 4,
     marginBottom: 4,
+    fontFamily: 'DMSans',
   },
   projectItem: {
     marginBottom: SPACING.itemGap,
@@ -230,16 +256,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.primary,
     marginBottom: 3,
+    fontFamily: 'DMSans',
   },
   projectDescription: {
     fontSize: FONTS.body,
     lineHeight: 1.55,
     color: COLORS.text,
     marginBottom: 3,
+    fontFamily: 'DMSans',
   },
   projectTech: {
     fontSize: FONTS.body,
     color: COLORS.muted,
+    fontFamily: 'DMSans',
   },
 })
 
@@ -254,7 +283,7 @@ function Icon({ name, size = 10, color = COLORS.accent }: { name: keyof typeof i
 function formatDateRange(startDate: string, endDate: string, current?: boolean): string {
   if (!startDate) return ''
   const start = formatMonthYear(startDate)
-  const end = current ? 'Present' : formatMonthYear(endDate)
+  const end = current ? 'Actualidad' : formatMonthYear(endDate)
   return `${start} — ${end}`
 }
 
