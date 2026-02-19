@@ -23,10 +23,8 @@ const SPACING = {
 
 const FONTS = {
   title: 24,
-  subtitle: 13,
-  section: 12,
-  body: 11,
-  small: 10,
+  subtitle: 12,
+  body: 10,
 }
 
 const styles = StyleSheet.create({
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   contactText: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.text,
     marginLeft: 5,
   },
@@ -100,7 +98,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   sectionTitle: {
-    fontSize: FONTS.section,
+    fontSize: FONTS.subtitle,
     fontWeight: 'bold',
     color: COLORS.primary,
     textTransform: 'uppercase',
@@ -119,6 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 3,
+    marginTop: 5
   },
   experienceRole: {
     fontSize: FONTS.body,
@@ -127,32 +126,35 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   experienceDates: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.accent,
     fontWeight: '500',
     marginLeft: 4,
   },
   experienceCompany: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.muted,
     fontStyle: 'italic',
-    marginBottom: 5,
-    lineHeight: 1.4,
+    marginBottom: 2,
+    lineHeight: 1,
+  },
+  experienceMeta: {
+    marginBottom: SPACING.itemGap,
   },
   achievementItem: {
     flexDirection: 'row',
-    marginBottom: 3,
+    marginBottom: 4,
     paddingLeft: 2,
   },
   achievementBullet: {
     width: 10,
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.accent,
   },
   achievementText: {
     flex: 1,
-    fontSize: FONTS.small,
-    lineHeight: 1.55,
+    fontSize: FONTS.body,
+    lineHeight: 1.5,
     color: COLORS.text,
   },
   educationItem: {
@@ -172,19 +174,19 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   educationDates: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.accent,
     fontWeight: '500',
     marginLeft: 4,
   },
   educationInstitute: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.muted,
     marginBottom: 2,
     lineHeight: 1.4,
   },
   educationLocation: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.light,
     lineHeight: 1.4,
   },
@@ -201,7 +203,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   skillTitle: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     fontWeight: '600',
     color: COLORS.muted,
     marginBottom: 5,
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 3,
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.text,
     marginRight: 4,
     marginBottom: 4,
@@ -230,13 +232,13 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   projectDescription: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     lineHeight: 1.55,
     color: COLORS.text,
     marginBottom: 3,
   },
   projectTech: {
-    fontSize: FONTS.small,
+    fontSize: FONTS.body,
     color: COLORS.muted,
   },
 })
@@ -337,7 +339,7 @@ function SkillsSection({ skills, title }: { skills: CVData['skills']; title: str
   if (skills.length === 0) return null
   
   return (
-    <View style={styles.skillsContainer} wrap={false}>
+    <View style={styles.skillsContainer}>
       <SectionHeader title={title} iconName="code" />
       <View style={styles.skillsGrid}>
         {skills.map(skill => (
@@ -357,7 +359,7 @@ function SkillsSection({ skills, title }: { skills: CVData['skills']; title: str
 
 function SummarySection({ summary, title }: { summary: CVData['summary']; title: string }) {
   return (
-    <View style={styles.section} wrap={false}>
+    <View style={styles.section}>
       <SectionHeader title={title} iconName="arrowRight" />
       <Text style={styles.summaryText}>{summary.content}</Text>
     </View>
@@ -369,15 +371,17 @@ function ExperienceSection({ experiences, title }: { experiences: CVData['experi
     <View style={styles.section}>
       <SectionHeader title={title} iconName="briefcase" />
       {experiences.map(exp => (
-        <View key={exp.id} style={styles.experienceItem} wrap={false}>
-          <View style={styles.experienceHeader}>
-            <Text style={styles.experienceRole}>{exp.role}</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name="calendarBlank" size={10} color={COLORS.accent} />
-              <Text style={styles.experienceDates}>{formatDateRange(exp.startDate, exp.endDate, exp.current)}</Text>
+        <View key={exp.id}>
+          <View style={styles.experienceMeta} wrap={false}>
+            <View style={styles.experienceHeader}>
+              <Text style={styles.experienceRole}>{exp.role}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Icon name="calendarBlank" size={10} color={COLORS.accent} />
+                <Text style={styles.experienceDates}>{formatDateRange(exp.startDate, exp.endDate, exp.current)}</Text>
+              </View>
             </View>
+            <Text style={styles.experienceCompany}>{exp.company}</Text>
           </View>
-          <Text style={styles.experienceCompany}>{exp.company}</Text>
           {exp.achievements && exp.achievements.map((achievement, idx) => (
             <View key={idx} style={styles.achievementItem}>
               <Text style={styles.achievementBullet}>•</Text>
@@ -395,8 +399,8 @@ function EducationSection({ education, title }: { education: CVData['education']
     <View style={styles.section}>
       <SectionHeader title={title} iconName="graduationCap" />
       {education.map(edu => (
-        <View key={edu.id} style={styles.educationItem} wrap={false}>
-          <View style={styles.educationHeader}>
+        <View key={edu.id} style={styles.educationItem}>
+          <View style={styles.educationHeader} wrap={false}>
             <Text style={styles.educationDegree}>{edu.degree}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Icon name="calendarBlank" size={10} color={COLORS.accent} />
@@ -418,7 +422,7 @@ function ProjectsSection({ projects, title }: { projects: CVData['projects']; ti
     <View style={styles.section}>
       <SectionHeader title={title} iconName="folder" />
       {projects.map(project => (
-        <View key={project.id} style={styles.projectItem} wrap={false}>
+        <View key={project.id} style={styles.projectItem}>
           <Text style={styles.projectName}>{project.name}</Text>
           {project.description && <Text style={styles.projectDescription}>{project.description}</Text>}
           {project.technologies && project.technologies.length > 0 && (
