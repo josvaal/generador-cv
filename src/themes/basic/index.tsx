@@ -412,9 +412,9 @@ function ExperienceSection({ experiences, title }: { experiences: CVData['experi
             <Text style={styles.experienceCompany}>{exp.company}</Text>
           </View>
           {exp.achievements && exp.achievements.map((achievement, idx) => (
-            <View key={idx} style={styles.achievementItem}>
+            <View key={idx} style={styles.achievementItem} wrap={false}>
               <Text style={styles.achievementBullet}>•</Text>
-              <Text style={styles.achievementText}>{cleanText(achievement)}</Text>
+              <Text style={styles.achievementText} wrap>{cleanText(achievement)}</Text>
             </View>
           ))}
         </View>
