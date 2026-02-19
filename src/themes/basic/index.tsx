@@ -1,50 +1,62 @@
-import { Document, Page, View, Text, Image, StyleSheet, Svg, Path } from '@react-pdf/renderer'
+import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Font } from '@react-pdf/renderer'
 import type { CVData } from '../../types/cv.types'
 import { iconPaths } from '../../lib/icons'
+
+Font.registerHyphenationCallback(word => [word])
+
+const PAGE_PADDING = 35
+const SIDEBAR_WIDTH = 200
 
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
+    paddingTop: PAGE_PADDING,
+    paddingBottom: PAGE_PADDING,
+    paddingLeft: PAGE_PADDING,
+    paddingRight: PAGE_PADDING,
   },
   sidebar: {
-    width: '35%',
-    backgroundColor: '#1E293B',
-    padding: 30,
-    paddingTop: 40,
+    width: SIDEBAR_WIDTH,
+    paddingRight: 25,
+    marginRight: 25,
+    borderRightWidth: 1,
+    borderRightColor: '#E2E8F0',
   },
   mainContent: {
-    width: '65%',
-    padding: 40,
-    paddingTop: 40,
+    flex: 1,
   },
   photo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    marginBottom: 16,
   },
-  nameSidebar: {
-    fontSize: 20,
+  name: {
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#F8FAFC',
-    marginBottom: 4,
+    color: '#0F172A',
+    marginBottom: 2,
+    lineHeight: 1.1,
   },
-  roleSidebar: {
+  role: {
     fontSize: 11,
-    color: '#38BDF8',
+    color: '#0EA5E9',
+    fontWeight: '600',
     marginBottom: 24,
+    lineHeight: 1.3,
   },
   sidebarSection: {
     marginBottom: 20,
   },
   sidebarLabel: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: 'bold',
-    color: '#94A3B8',
+    color: '#64748B',
     textTransform: 'uppercase',
-    letterSpacing: 1.5,
-    marginBottom: 10,
+    letterSpacing: 1.2,
+    marginBottom: 12,
+    lineHeight: 1.2,
   },
   contactItem: {
     flexDirection: 'row',
@@ -52,129 +64,149 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   contactText: {
-    fontSize: 9,
-    color: '#E2E8F0',
+    fontSize: 8,
+    color: '#475569',
     marginLeft: 8,
     flex: 1,
+    lineHeight: 1.4,
   },
   skillGroup: {
     marginBottom: 12,
   },
   skillTitle: {
     fontSize: 8,
-    color: '#94A3B8',
-    marginBottom: 4,
-    textTransform: 'uppercase',
+    color: '#64748B',
+    marginBottom: 6,
+    fontWeight: '600',
+    lineHeight: 1.2,
   },
   skillTags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 4,
   },
   skillTag: {
-    backgroundColor: '#334155',
+    backgroundColor: '#F1F5F9',
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 3,
     fontSize: 7,
-    color: '#E2E8F0',
+    color: '#334155',
     marginRight: 4,
     marginBottom: 4,
-  },
-  name: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#0F172A',
-    marginBottom: 4,
-  },
-  role: {
-    fontSize: 13,
-    color: '#0EA5E9',
-    fontWeight: '600',
-    marginBottom: 20,
   },
   sectionHeader: {
     borderBottomWidth: 2,
     borderBottomColor: '#0EA5E9',
     paddingBottom: 6,
-    marginBottom: 12,
+    marginBottom: 14,
     marginTop: 16,
   },
   sectionTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'bold',
     color: '#0F172A',
     textTransform: 'uppercase',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
+    lineHeight: 1.2,
   },
   summary: {
-    fontSize: 10,
-    lineHeight: 1.6,
+    fontSize: 9,
+    lineHeight: 1.7,
     color: '#334155',
   },
   experience: {
-    marginBottom: 14,
+    marginBottom: 16,
   },
   experienceHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 2,
+    alignItems: 'baseline',
+    marginBottom: 3,
   },
   experienceRole: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'bold',
     color: '#0F172A',
     flex: 1,
+    lineHeight: 1.2,
   },
   experienceDates: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#0EA5E9',
     fontWeight: '600',
+    marginLeft: 8,
+    lineHeight: 1.2,
   },
   experienceCompany: {
-    fontSize: 10,
+    fontSize: 9,
     color: '#64748B',
     fontStyle: 'italic',
-    marginBottom: 4,
+    marginBottom: 6,
+    lineHeight: 1.3,
   },
   achievement: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#334155',
-    lineHeight: 1.5,
-    marginBottom: 2,
+    lineHeight: 1.6,
+    marginBottom: 3,
     paddingLeft: 8,
   },
   education: {
-    marginBottom: 12,
+    marginBottom: 14,
   },
   educationHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 2,
+    alignItems: 'baseline',
+    marginBottom: 3,
   },
   educationDegree: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'bold',
     color: '#0F172A',
     flex: 1,
+    lineHeight: 1.2,
   },
   educationDates: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#0EA5E9',
     fontWeight: '600',
+    marginLeft: 8,
+    lineHeight: 1.2,
   },
   educationInstitute: {
-    fontSize: 10,
+    fontSize: 9,
     color: '#64748B',
+    lineHeight: 1.3,
+    marginBottom: 2,
   },
   educationLocation: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#94A3B8',
     fontStyle: 'italic',
+    lineHeight: 1.3,
+  },
+  projectName: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#0F172A',
+    lineHeight: 1.2,
+    marginBottom: 3,
+  },
+  projectDescription: {
+    fontSize: 8,
+    color: '#334155',
+    lineHeight: 1.6,
+    marginBottom: 3,
+  },
+  projectTech: {
+    fontSize: 7,
+    color: '#64748B',
+    lineHeight: 1.4,
   },
 })
 
-function PDFIcon({ name, size = 12, color = '#38BDF8' }: { name: keyof typeof iconPaths; size?: number; color?: string }) {
+function PDFIcon({ name, size = 10, color = '#0EA5E9' }: { name: keyof typeof iconPaths; size?: number; color?: string }) {
   return (
     <Svg viewBox="0 0 256 256" width={size} height={size}>
       <Path d={iconPaths[name]} fill={color} />
@@ -198,9 +230,75 @@ function formatMonthYear(dateStr: string): string {
 }
 
 function processAchievements(achievements: string[]): string[] {
-  return achievements.map(a => {
-    return a.replace(/<[^>]*>/g, '').trim()
-  }).filter(Boolean)
+  return achievements.map(a => a.replace(/<[^>]*>/g, '').trim()).filter(Boolean)
+}
+
+function Sidebar({ basicInfo, skills, sectionConfig }: { basicInfo: CVData['basicInfo']; skills: CVData['skills']; sectionConfig: CVData['sectionConfig'] }) {
+  return (
+    <View style={styles.sidebar} fixed>
+      {basicInfo.photo && (
+        <Image src={basicInfo.photo} style={styles.photo} />
+      )}
+      <Text style={styles.name}>{basicInfo.name}</Text>
+      <Text style={styles.role}>{basicInfo.role}</Text>
+
+      <View style={styles.sidebarSection}>
+        <Text style={styles.sidebarLabel}>Contact</Text>
+        {basicInfo.email && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="envelope" />
+            <Text style={styles.contactText}>{basicInfo.email}</Text>
+          </View>
+        )}
+        {basicInfo.phone && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="phone" />
+            <Text style={styles.contactText}>{basicInfo.phone}</Text>
+          </View>
+        )}
+        {basicInfo.location && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="mapPin" />
+            <Text style={styles.contactText}>{basicInfo.location}</Text>
+          </View>
+        )}
+        {basicInfo.website && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="globe" />
+            <Text style={styles.contactText}>{basicInfo.website}</Text>
+          </View>
+        )}
+        {basicInfo.github && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="githubLogo" />
+            <Text style={styles.contactText}>{basicInfo.github}</Text>
+          </View>
+        )}
+        {basicInfo.linkedin && (
+          <View style={styles.contactItem}>
+            <PDFIcon name="linkedinLogo" />
+            <Text style={styles.contactText}>{basicInfo.linkedin}</Text>
+          </View>
+        )}
+      </View>
+
+      {sectionConfig.visibility.skills && skills.length > 0 && (
+        <View style={styles.sidebarSection}>
+          <Text style={styles.sidebarLabel}>Skills</Text>
+          {skills.map(skill => (
+            <View key={skill.id} style={styles.skillGroup}>
+              <Text style={styles.skillTitle}>{skill.title}</Text>
+              <View style={styles.skillTags}>
+                {skill.details.split(',').map((s, i) => (
+                  <Text key={i} style={styles.skillTag}>{s.trim()}</Text>
+                ))}
+              </View>
+            </View>
+          ))}
+        </View>
+      )}
+    </View>
+  )
 }
 
 export function BasicDocument({ data }: { data: CVData }) {
@@ -208,75 +306,10 @@ export function BasicDocument({ data }: { data: CVData }) {
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.sidebar}>
-          {basicInfo.photo && (
-            <Image src={basicInfo.photo} style={styles.photo} />
-          )}
-          <Text style={styles.nameSidebar}>{basicInfo.name}</Text>
-          <Text style={styles.roleSidebar}>{basicInfo.role}</Text>
-
-          <View style={styles.sidebarSection}>
-            <Text style={styles.sidebarLabel}>Contact</Text>
-            {basicInfo.email && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="envelope" />
-                <Text style={styles.contactText}>{basicInfo.email}</Text>
-              </View>
-            )}
-            {basicInfo.phone && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="phone" />
-                <Text style={styles.contactText}>{basicInfo.phone}</Text>
-              </View>
-            )}
-            {basicInfo.location && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="mapPin" />
-                <Text style={styles.contactText}>{basicInfo.location}</Text>
-              </View>
-            )}
-            {basicInfo.website && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="globe" />
-                <Text style={styles.contactText}>{basicInfo.website}</Text>
-              </View>
-            )}
-            {basicInfo.github && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="githubLogo" />
-                <Text style={styles.contactText}>{basicInfo.github}</Text>
-              </View>
-            )}
-            {basicInfo.linkedin && (
-              <View style={styles.contactItem}>
-                <PDFIcon name="linkedinLogo" />
-                <Text style={styles.contactText}>{basicInfo.linkedin}</Text>
-              </View>
-            )}
-          </View>
-
-          {sectionConfig.visibility.skills && skills.length > 0 && (
-            <View style={styles.sidebarSection}>
-              <Text style={styles.sidebarLabel}>Skills</Text>
-              {skills.map(skill => (
-                <View key={skill.id} style={styles.skillGroup}>
-                  <Text style={styles.skillTitle}>{skill.title}</Text>
-                  <View style={styles.skillTags}>
-                    {skill.details.split(',').map((s, i) => (
-                      <Text key={i} style={styles.skillTag}>{s.trim()}</Text>
-                    ))}
-                  </View>
-                </View>
-              ))}
-            </View>
-          )}
-        </View>
+      <Page size="A4" style={styles.page} wrap>
+        <Sidebar basicInfo={basicInfo} skills={skills} sectionConfig={sectionConfig} />
 
         <View style={styles.mainContent}>
-          <Text style={styles.name}>{basicInfo.name}</Text>
-          <Text style={styles.role}>{basicInfo.role}</Text>
-
           {sectionConfig.order.map(section => {
             if (!sectionConfig.visibility[section]) return null
             if (section === 'skills') return null
@@ -284,7 +317,7 @@ export function BasicDocument({ data }: { data: CVData }) {
             switch (section) {
               case 'summary':
                 return (
-                  <View key="summary">
+                  <View key="summary" wrap={false}>
                     <View style={styles.sectionHeader}>
                       <Text style={styles.sectionTitle}>{sectionConfig.titles.summary}</Text>
                     </View>
@@ -299,7 +332,7 @@ export function BasicDocument({ data }: { data: CVData }) {
                       <Text style={styles.sectionTitle}>{sectionConfig.titles.experiences}</Text>
                     </View>
                     {experiences.map(exp => (
-                      <View key={exp.id} style={styles.experience}>
+                      <View key={exp.id} style={styles.experience} wrap={false}>
                         <View style={styles.experienceHeader}>
                           <Text style={styles.experienceRole}>{exp.role}</Text>
                           <Text style={styles.experienceDates}>{formatDateRange(exp.startDate, exp.endDate, exp.current)}</Text>
@@ -320,7 +353,7 @@ export function BasicDocument({ data }: { data: CVData }) {
                       <Text style={styles.sectionTitle}>{sectionConfig.titles.education}</Text>
                     </View>
                     {education.map(edu => (
-                      <View key={edu.id} style={styles.education}>
+                      <View key={edu.id} style={styles.education} wrap={false}>
                         <View style={styles.educationHeader}>
                           <Text style={styles.educationDegree}>{edu.degree}</Text>
                           <Text style={styles.educationDates}>{formatDateRange(edu.startDate, edu.endDate, edu.current)}</Text>
@@ -340,11 +373,11 @@ export function BasicDocument({ data }: { data: CVData }) {
                       <Text style={styles.sectionTitle}>{sectionConfig.titles.projects}</Text>
                     </View>
                     {projects.map(project => (
-                      <View key={project.id} style={{ marginBottom: 10 }}>
-                        <Text style={{ fontSize: 11, fontWeight: 'bold', color: '#0F172A' }}>{project.name}</Text>
-                        {project.description && <Text style={{ fontSize: 9, color: '#334155', marginTop: 2 }}>{project.description}</Text>}
+                      <View key={project.id} style={{ marginBottom: 10 }} wrap={false}>
+                        <Text style={styles.projectName}>{project.name}</Text>
+                        {project.description && <Text style={styles.projectDescription}>{project.description}</Text>}
                         {project.technologies && project.technologies.length > 0 && (
-                          <Text style={{ fontSize: 8, color: '#64748B', marginTop: 2 }}>Tech: {project.technologies.join(', ')}</Text>
+                          <Text style={styles.projectTech}>Tech: {project.technologies.join(', ')}</Text>
                         )}
                       </View>
                     ))}
