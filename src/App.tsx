@@ -4,11 +4,13 @@ import cvData from './assets/cv-data.json'
 import type { CVData } from './types/cv.types'
 import { getTheme, registerTheme, getAllThemes } from './themes'
 import { basicTheme } from './themes/basic'
+import { academicoTheme } from './themes/academico'
 import Toolbar from './components/toolbar/Toolbar'
 import CVPreview from './components/preview/CVPreview'
 import './App.css'
 
 registerTheme(basicTheme)
+registerTheme(academicoTheme)
 
 function App() {
   const [data] = useState<CVData>(cvData as CVData)

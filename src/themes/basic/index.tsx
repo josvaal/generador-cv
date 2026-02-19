@@ -499,6 +499,6 @@ export function BasicDocument({ data }: { data: CVData }) {
 
 export const basicTheme = {
   id: 'basic',
-  name: 'Basic',
+  name: 'Básico',
   Document: BasicDocument,
 }
