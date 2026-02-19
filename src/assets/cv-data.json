@@ -106,11 +106,11 @@
       "projects": true
     },
     "titles": {
-      "summary": "Summary",
-      "experiences": "Experience",
-      "education": "Education",
-      "skills": "Skills",
-      "projects": "Projects"
+      "summary": "Resumen",
+      "experiences": "Experiencia",
+      "education": "Educación",
+      "skills": "Habilidades",
+      "projects": "Proyectos"
     },
     "order": [
       "summary",
