@@ -1,5 +1,6 @@
-import { Document, Page, View, Text, StyleSheet, Font } from '@react-pdf/renderer'
+import { Document, Page, View, Text, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import type { CVData } from '../../types/cv.types'
+import profilePhoto from '../../assets/profile.png'
 
 Font.register({
   family: 'Times New Roman',
@@ -42,6 +43,19 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: SPACING.sectionGap,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  photoContainer: {
+    marginRight: 16,
+  },
+  photo: {
+    width: 80,
+    height: 80,
+    borderRadius: 2,
+  },
+  headerText: {
+    flex: 1,
   },
   name: {
     fontSize: FONTS.title,
@@ -238,9 +252,14 @@ function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
 
   return (
     <View style={styles.header}>
-      <Text style={styles.name}>{basicInfo.name}</Text>
-      <Text style={styles.contactLine}>{basicInfo.role}</Text>
-      <Text style={styles.contactLine}>{contactLine}</Text>
+      <View style={styles.photoContainer}>
+        <Image src={profilePhoto} style={styles.photo} />
+      </View>
+      <View style={styles.headerText}>
+        <Text style={styles.name}>{basicInfo.name}</Text>
+        <Text style={styles.contactLine}>{basicInfo.role}</Text>
+        <Text style={styles.contactLine}>{contactLine}</Text>
+      </View>
     </View>
   )
 }
