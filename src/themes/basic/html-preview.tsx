@@ -1,6 +1,6 @@
+import { FormattedText } from '../../components/preview/shared/FormattedText';
 import type { CVData } from '../../types/cv.types';
 import { basicHTMLStyles } from './styles';
-import { FormattedText } from '../../components/preview/shared/FormattedText';
 
 /**
  * Basic Theme - HTML Preview Component

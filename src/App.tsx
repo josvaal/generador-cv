@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import cvData from './assets/cv-data.json';
 import type { CVData } from './types/cv.types';
