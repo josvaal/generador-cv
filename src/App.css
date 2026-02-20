@@ -1,82 +1,14 @@
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-}
-
-.loading-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: #f8fafc;
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #38bdf8;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+@media print {
+  .preview-container {
+    padding: 0;
   }
-}
 
-.preview-container {
-  flex: 1;
-  padding: 84px 24px 24px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  overflow: auto;
-}
+  .cv-preview-container {
+    max-width: none;
+  }
 
-.cv-preview-container {
-  width: 100%;
-  max-width: 210mm;
-  margin: 0 auto;
-}
-
-.cv-preview {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 20px 50px -12px rgba(0, 0, 0, 0.5),
-    0 8px 20px -8px rgba(0, 0, 0, 0.3);
-  min-height: 297mm;
-  overflow: hidden;
-}
-
-.preview-error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: #f87171;
-  text-align: center;
-  padding: 60px 40px;
-  font-size: 16px;
-  background-color: rgba(239, 68, 68, 0.1);
-  border-radius: 12px;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.preview-error svg {
-  opacity: 0.8;
-}
-
-.preview-error p {
-  margin: 0;
+  .cv-preview {
+    box-shadow: none;
+    border-radius: 0;
+  }
 }

@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
 :root {
   font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
@@ -17,59 +20,38 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #0f172a;
 }
 
 #root {
   height: 100%;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: oklch(var(--b2));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: oklch(var(--bc) / 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: oklch(var(--bc) / 0.5);
 }
 
-/* Selection */
 ::selection {
-  background-color: rgba(56, 189, 248, 0.3);
+  background-color: oklch(var(--p) / 0.3);
   color: inherit;
 }
 
-/* Print styles */
 @media print {
   .toolbar {
     display: none !important;
-  }
-
-  .app-container {
-    background-color: white;
-  }
-
-  .preview-container {
-    padding: 0;
-  }
-
-  .cv-preview-container {
-    max-width: none;
-  }
-
-  .cv-preview {
-    box-shadow: none;
-    border-radius: 0;
   }
 
   body {
