@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Times New Roman',
   },
   header: {
-    marginBottom: SPACING.sectionGap,
+    marginBottom: SPACING.sectionGap + 8,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
   photoContainer: {
-    marginRight: 20,
+    marginRight: 18,
   },
   photo: {
     width: 85,
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     flex: 1,
+    justifyContent: 'flex-start',
   },
   name: {
     fontSize: FONTS.title,
@@ -66,17 +67,21 @@ const styles = StyleSheet.create({
     fontSize: FONTS.subtitle,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
-    marginBottom: 8,
+    marginBottom: 6,
+  },
+  contactContainer: {
+    marginTop: 4,
   },
   contactRow: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginBottom: 2,
   },
   contactItem: {
     fontSize: FONTS.body - 1,
     color: COLORS.black,
     fontFamily: 'Times New Roman',
-    marginRight: 12,
+    marginRight: 16,
   },
   section: {
     marginBottom: SPACING.sectionGap,
@@ -249,6 +254,15 @@ function SectionHeader({ title }: { title: string }) {
 }
 
 function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
+  const contactItems = [
+    basicInfo.email,
+    basicInfo.phone,
+    basicInfo.location,
+    basicInfo.website,
+    basicInfo.github,
+    basicInfo.linkedin,
+  ].filter(Boolean)
+
   return (
     <View style={styles.header}>
       {basicInfo.photo && (
@@ -259,15 +273,12 @@ function Header({ basicInfo }: { basicInfo: CVData['basicInfo'] }) {
       <View style={styles.headerText}>
         <Text style={styles.name}>{basicInfo.name}</Text>
         <Text style={styles.role}>{basicInfo.role}</Text>
-        <View style={styles.contactRow}>
-          {basicInfo.email && <Text style={styles.contactItem}>{basicInfo.email}</Text>}
-          {basicInfo.phone && <Text style={styles.contactItem}>{basicInfo.phone}</Text>}
-          {basicInfo.location && <Text style={styles.contactItem}>{basicInfo.location}</Text>}
-        </View>
-        <View style={styles.contactRow}>
-          {basicInfo.website && <Text style={styles.contactItem}>{basicInfo.website}</Text>}
-          {basicInfo.github && <Text style={styles.contactItem}>{basicInfo.github}</Text>}
-          {basicInfo.linkedin && <Text style={styles.contactItem}>{basicInfo.linkedin}</Text>}
+        <View style={styles.contactContainer}>
+          <View style={styles.contactRow}>
+            {contactItems.map((item, idx) => (
+              <Text key={idx} style={styles.contactItem}>{item}</Text>
+            ))}
+          </View>
         </View>
       </View>
     </View>
