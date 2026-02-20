@@ -5,6 +5,7 @@ import type { CVData } from './types/cv.types'
 import { getTheme, registerTheme, getAllThemes } from './themes'
 import { basicTheme } from './themes/basic'
 import { academicoTheme } from './themes/academico'
+import { modernoTheme } from './themes/moderno'
 import Toolbar from './components/toolbar/Toolbar'
 import CVPreview from './components/preview/CVPreview'
 import { processGrayscaleImage } from './lib/image-utils'
@@ -13,6 +14,7 @@ import './App.css'
 
 registerTheme(basicTheme)
 registerTheme(academicoTheme)
+registerTheme(modernoTheme)
 
 function App() {
   const [baseData] = useState<CVData>(cvData as CVData)
