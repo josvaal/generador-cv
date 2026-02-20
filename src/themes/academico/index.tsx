@@ -20,7 +20,7 @@ const COLORS = {
 
 const SPACING = {
   page: 36,
-  sectionGap: 18,
+  sectionGap: 12,
   itemGap: 10,
 }
 
