@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   headerTop: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginBottom: 12,
   },
   photoContainer: {
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   photo: {
-    width: 68,
-    height: 68,
+    width: 92,
+    height: 92,
     borderRadius: 4,
   },
   headerInfo: {
