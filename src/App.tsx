@@ -68,25 +68,32 @@ function App() {
 
   if (!photoGrayscale) {
     return (
-      <div className="min-h-screen flex flex-col bg-base-300">
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
-          <p className="text-base-content">Cargando...</p>
+      <div data-theme="logo-theme" className="min-h-screen flex flex-col bg-gradient-to-br from-base-300 via-base-200 to-base-300">
+        <div className="flex-1 flex flex-col items-center justify-center gap-6">
+          <div className="relative">
+            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-150 animate-pulse"></div>
+            <span className="loading loading-spinner loading-xl text-primary relative z-10"></span>
+          </div>
+          <div className="text-center">
+            <p className="text-xl font-semibold text-base-content">Preparando tu CV</p>
+            <p className="text-sm text-base-content/60 mt-1">Un momento...</p>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div data-theme="dark" className="min-h-screen flex flex-col bg-base-300">
+    <div data-theme="logo-theme" className="min-h-screen flex bg-base-300">
       <Toolbar
         onExportPDF={handleExportPDF}
         onThemeChange={setSelectedTheme}
         currentTheme={selectedTheme}
         isGenerating={isGenerating}
         themes={themes}
+        cvData={data}
       />
-      <div className="flex-1 ml-72 p-6 flex justify-center items-start overflow-auto">
+      <div className="flex-1 ml-80 p-8 flex justify-center items-start overflow-auto">
         <CVPreview data={data} theme={theme} />
       </div>
     </div>
