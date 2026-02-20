@@ -49,14 +49,10 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: SPACING.sectionGap + 4,
-    paddingBottom: SPACING.sectionGap,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
   },
   headerTop: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
   },
   photoContainer: {
     marginRight: 16,
