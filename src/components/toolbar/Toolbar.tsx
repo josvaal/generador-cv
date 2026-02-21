@@ -74,26 +74,26 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-base-content truncate">{cvData.basicInfo.name}</p>
-                <p className="text-xs text-base-content/60 truncate">{cvData.basicInfo.role}</p>
+                <p className="font-semibold text-white truncate">{cvData.basicInfo.name}</p>
+                <p className="text-xs text-white/70 truncate">{cvData.basicInfo.role}</p>
               </div>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <div className="badge badge-primary/20 badge-sm gap-1 text-primary">
+              <div className="badge badge-primary/20 badge-sm gap-1 text-white">
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                 </svg>
                 {cvData.experiences.length} exp.
               </div>
-              <div className="badge badge-secondary/20 badge-sm gap-1 text-secondary">
+              <div className="badge badge-secondary/20 badge-sm gap-1 text-white">
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                   <path d="M6 12v5c3 3 9 3 12 0v-5" />
                 </svg>
                 {cvData.education.length} edu.
               </div>
-              <div className="badge badge-accent/20 badge-sm gap-1 text-accent">
+              <div className="badge badge-accent/20 badge-sm gap-1 text-white">
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polygon points="12 2 2 7 12 12 22 7 12 2" />
                   <polyline points="2 17 12 22 22 17" />
@@ -107,8 +107,8 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
 
         <div className="form-control w-full">
           <label className="label pb-1">
-            <span className="label-text font-semibold text-base-content/80">Plantilla</span>
-            <span className="label-text-alt text-base-content/50">Selecciona un estilo</span>
+            <span className="label-text font-semibold text-white/90">Plantilla</span>
+            <span className="label-text-alt text-white/60">Selecciona un estilo</span>
           </label>
           <div className="grid grid-cols-2 gap-2">
             {themes.map((theme) => (
@@ -128,9 +128,9 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
           <div className="card-body p-4 gap-2">
             <div className="flex items-center gap-2">
               <Lightbulb className="text-primary" size={18} weight="fill" />
-              <span className="font-medium text-sm text-base-content">Consejo</span>
+              <span className="font-medium text-sm text-white">Consejo</span>
             </div>
-            <p className="text-xs text-base-content/70 leading-relaxed">
+            <p className="text-xs text-white/70 leading-relaxed">
               Cada plantilla está optimizada para diferentes industrias. "Académico" es ideal para investigadores, "Programador" para desarrolladores.
             </p>
           </div>
@@ -159,7 +159,7 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
             </>
           )}
         </button>
-        <p className="text-xs text-center text-base-content/50 mt-3">
+        <p className="text-xs text-center text-white/60 mt-3">
           Archivo listo para imprimir o enviar
         </p>
       </div>
