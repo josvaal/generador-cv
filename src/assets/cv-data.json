@@ -1,100 +1,135 @@
 {
   "basicInfo": {
-    "name": "José Valentino",
-    "role": "Desarrollador de Software",
-    "location": "Puerto Maldonado, Peru",
-    "email": "josval.personal@gmail.com",
-    "website": "josval.vercel.app",
-    "phone": "+51 906 706 357",
-    "github": "github.com/josvaal",
-    "linkedin": "linkedin.com/in/josval"
+    "name": "Ana García Pérez",
+    "role": "Desarrolladora Full Stack",
+    "location": "Madrid, España",
+    "email": "ana.garcia@ejemplo.com",
+    "website": "anagarcia.dev",
+    "phone": "+34 612 345 678",
+    "github": "github.com/anagarcia",
+    "linkedin": "linkedin.com/in/anagarcia"
   },
   "summary": {
-    "content": "Enfocado en soluciones eficientes, desarrollo sistemas modernos, transformando ideas en experiencias sólidas. Me enfoco en la calidad de los sistemas, así optimizando procesos y cuidando cada detalle para garantizar calidad e impacto real."
+    "content": "Desarrolladora Full Stack con 5+ años de experiencia creando aplicaciones web escalables y fáciles de mantener. Apasionada por el código limpio, las buenas prácticas y el aprendizaje continuo. Me especializo en tecnologías modernas de JavaScript y diseño de sistemas robustos."
   },
   "experiences": [
     {
-      "id": "6jo81b3",
-      "role": "Locador (Informático)",
-      "company": "Ministerio Público - Fiscalía de la Nación",
-      "startDate": "2025-09",
-      "endDate": "2026-12",
-      "achievements": [
-        "<p>Diseñamos la estructura funcional y la lógica del sistema, definiendo flujos de trabajo y módulos digitales para optimizar la organización interna, presentando la propuesta en reuniones técnicas para su validación institucional.</p>",
-        "<p>Desarrollamos en equipo un sistema administrativo para el área de Potencial Humano, orientado a centralizar y agilizar procesos de gestión de personal, asistencia, permisos, licencias, vacaciones, capacitaciones y control documental.</p>"
-      ]
-    },
-    {
-      "id": "6xwcfv6",
-      "role": "Prácticas preprofesionales",
-      "company": "Aukde",
-      "startDate": "2025-01",
-      "endDate": "2025-04",
-      "achievements": [
-        "<p>Desarrollé e implementé un RBAC (Control de Acceso Basado en Roles), con validación exhaustiva en todos los puntos de la aplicación, mejorando la eficiencia operativa en un 25% y garantizando un cumplimiento continuo de las políticas internas.</p>",
-        "<p>Orquesté la contenerización completa de la arquitectura (todas las capas de la solución y sus herramientas de soporte), estandarizando entornos de desarrollo y producción, y disminuyendo el tiempo de despliegue en un 50%.</p>"
-      ]
-    },
-    {
-      "id": "1a79814c-84ed-439b-aabc-4e28571677c9",
-      "role": "Desarrollador Web",
-      "company": "Aukde",
+      "id": "exp-1",
+      "role": "Senior Frontend Developer",
+      "company": "TechCorp Innovations",
       "startDate": "2023-01",
-      "endDate": "2023-05",
+      "endDate": "2024-12",
       "current": false,
       "achievements": [
-        "<p>Implementé un modelo de control de acceso basado en roles (RBAC) y colaboré en el despliegue de la solución en infraestructura cloud mediante Google Cloud y distribución por CDN, asegurando alta disponibilidad, seguridad y rendimiento en entornos productivos.</p>",
-        "<p>Desarrollé e implementé un sistema integral de gestión para clínicas odontológicas, optimizando procesos administrativos, gestión de pacientes, historiales clínicos y control de citas, e incorporando herramientas visuales para el registro y almacenamiento estructurado de reportes y resultados.</p>"
+        "<p>Lideré el rediseño de la plataforma principal, mejorando el rendimiento en un 40% y la satisfacción del usuario en un 25%.</p>",
+        "<p>Implementé una arquitectura de componentes reutilizables que redujo el tiempo de desarrollo de nuevas características en un 30%.</p>",
+        "<p>Mentoré a 3 desarrolladores junior, estableciendo guías de estilo y patrones de código.</p>"
       ]
     },
     {
-      "id": "c6fafe21-c01f-414d-abe0-45a17a13d72d",
-      "role": "Asistente de Desarrollador Web",
-      "company": "Aukde",
-      "startDate": "2022-02",
-      "endDate": "2022-07",
+      "id": "exp-2",
+      "role": "Full Stack Developer",
+      "company": "Startup Digital",
+      "startDate": "2021-06",
+      "endDate": "2022-12",
       "current": false,
       "achievements": [
-        "<p>Colaboré en sesiones de planificación y revisión de requisitos con equipos multidisciplinarios, establecí canales de comunicación claros y documenté criterios de aceptación precisos. Esta coordinación mejoró la alineación entre las partes interesadas y permitió entregas más fiables y ajustadas a los objetivos del proyecto, con un impacto positivo en la confianza interna y el seguimiento de plazos.</p>",
-        "<p>Gestioné la conexión y el procesamiento de datos provenientes de diversas fuentes externas, optimizando la eficiencia en cada etapa del flujo de información. Como resultado, se logró una reducción del 30 % en los tiempos de carga y una experiencia de navegación notablemente más ágil y fluída.</p>"
+        "<p>Desarrollé un sistema de autenticación OAuth2 con tokens JWT, mejorando significativamente la seguridad de la aplicación.</p>",
+        "<p>Creé una API RESTful con Node.js y Express que maneja más de 100,000 solicitudes diarias.</p>",
+        "<p>Implementé pruebas unitarias y de integración, alcanzando una cobertura del 85%.</p>"
+      ]
+    },
+    {
+      "id": "exp-3",
+      "role": "Junior Developer",
+      "company": "Agencia Web Creativa",
+      "startDate": "2019-09",
+      "endDate": "2021-05",
+      "current": false,
+      "achievements": [
+        "<p>Colaboré en el desarrollo de más de 20 sitios web para clientes diversos.</p>",
+        "<p>Optimicé el SEO de los proyectos, aumentando el tráfico orgánico en un promedio del 35%.</p>",
+        "<p>Integré servicios de terceros como Google Analytics, Stripe y Mapbox.</p>"
       ]
     }
   ],
   "education": [
     {
-      "id": "d7f4fe1d-d89f-4584-baf1-e9e2fe5d33bc",
-      "degree": "Egresado de Ingeniería de Sistemas e Informática",
-      "institute": "Universidad Nacional Amazónica de Madre de Dios",
-      "location": "Puerto Maldonado, Perú",
-      "startDate": "2021-03",
-      "endDate": "2026-01",
+      "id": "edu-1",
+      "degree": "Grado en Ingeniería Informática",
+      "institute": "Universidad Politécnica de Madrid",
+      "location": "Madrid, España",
+      "startDate": "2015-09",
+      "endDate": "2019-06",
+      "current": false
+    },
+    {
+      "id": "edu-2",
+      "degree": "Máster en Desarrollo de Software",
+      "institute": "Escuela Superior de Ingeniería",
+      "location": "Barcelona, España",
+      "startDate": "2019-09",
+      "endDate": "2021-06",
+      "current": false
+    },
+    {
+      "id": "edu-3",
+      "degree": "Certificación AWS Cloud Practitioner",
+      "institute": "Amazon Web Services",
+      "location": "Online",
+      "startDate": "2022-03",
+      "endDate": "2022-03",
       "current": false
     }
   ],
   "skills": [
     {
-      "id": "bc928b4c-c911-44ee-a792-34425dfa6c05",
-      "title": "Desarrollo Frontend",
-      "details": "React, Next.js, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3, SASS/SCSS, Tailwind CSS, Material UI"
+      "id": "skill-1",
+      "title": "Frontend",
+      "details": "React, Next.js, TypeScript, Vue.js, HTML5, CSS3, Tailwind CSS, Styled Components"
     },
     {
-      "id": "tlismtt",
-      "title": "Desarrollo Backend",
-      "details": "NestJS, Express, NodeJS, DJango, Prisma, TypeORM, Redis, RBAC, SQL, NoSQL, Linux"
+      "id": "skill-2",
+      "title": "Backend",
+      "details": "Node.js, Express, NestJS, Python, Django, PostgreSQL, MongoDB, Redis"
     },
     {
-      "id": "c1be4900-6d8e-4bee-9aee-32e5b15815ec",
-      "title": "Diseño UI/UX",
-      "details": "Figma, Adobe XD, Responsive Design, Wireframing, Prototyping, User Research"
+      "id": "skill-3",
+      "title": "DevOps & Cloud",
+      "details": "AWS, Docker, Kubernetes, CI/CD, GitHub Actions, Terraform"
     },
     {
-      "id": "f3fb7f2d-3e46-48db-ac88-0f5fdb836fec",
-      "title": "Optimización de Rendimiento",
-      "details": "Code Splitting, Lazy Loading, Bundle Analysis, Core Web Vitals, Lighthouse Auditing."
+      "id": "skill-4",
+      "title": "Herramientas & Otros",
+      "details": "Git, Jest, Cypress, Figma, Jira, Scrum, Agile"
     }
   ],
-  "projects": [],
-  "activeTheme": "nordic",
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "TaskFlow - Gestor de Proyectos",
+      "description": "Aplicación web para gestión de proyectos y tareas con colaboraciones en tiempo real.",
+      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Docker"],
+      "url": "https://taskflow.example.com",
+      "github": "github.com/anagarcia/taskflow"
+    },
+    {
+      "id": "proj-2",
+      "name": "WeatherDashboard",
+      "description": "Dashboard interactivo para visualizar datos meteorológicos de múltiples ciudades.",
+      "technologies": ["Vue.js", "Chart.js", "OpenWeatherMap API"],
+      "github": "github.com/anagarcia/weather-dashboard"
+    },
+    {
+      "id": "proj-3",
+      "name": "Portfolio Personal",
+      "description": "Sitio web personal con proyectos, blog y sección de contacto.",
+      "technologies": ["Next.js", "MDX", "Tailwind CSS", "Vercel"],
+      "url": "https://anagarcia.dev",
+      "github": "github.com/anagarcia/portfolio"
+    }
+  ],
+  "activeTheme": "basic",
   "sectionConfig": {
     "visibility": {
       "basicInfo": true,
@@ -111,6 +146,6 @@
       "skills": "Habilidades",
       "projects": "Proyectos"
     },
-    "order": ["summary", "experiences", "education", "skills", "projects"]
+    "order": ["summary", "experiences", "education", "projects", "skills"]
   }
 }

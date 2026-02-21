@@ -10,6 +10,7 @@ import { programadorTheme } from './themes/programador'
 import Toolbar from './components/toolbar/Toolbar'
 import CVPreview from './components/preview/CVPreview'
 import { processGrayscaleImage } from './lib/image-utils'
+import { exportCVData, importCVData } from './lib/json-utils'
 import profilePhoto from './assets/profile.png'
 import './App.css'
 
@@ -19,7 +20,7 @@ registerTheme(modernoTheme)
 registerTheme(programadorTheme)
 
 function App() {
-  const [baseData] = useState<CVData>(cvData as CVData)
+  const [baseData, setBaseData] = useState<CVData>(cvData as CVData)
   const [photoGrayscale, setPhotoGrayscale] = useState<string | null>(null)
   const [selectedTheme, setSelectedTheme] = useState(() => {
     if (baseData.activeTheme && getTheme(baseData.activeTheme)) {
@@ -66,6 +67,24 @@ function App() {
     }
   }
 
+  const handleExportJSON = () => {
+    exportCVData(baseData)
+  }
+
+  const handleImportJSON = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    try {
+      const importedData = await importCVData(file)
+      setBaseData(importedData)
+      event.target.value = '' // Resetear input
+    } catch (error) {
+      console.error('Import failed:', error)
+      alert('Error al importar el archivo JSON. Verifica que el formato sea correcto.')
+    }
+  }
+
   if (!photoGrayscale) {
     return (
       <div data-theme="logo-theme" className="min-h-screen flex flex-col bg-gradient-to-br from-base-300 via-base-200 to-base-300">
@@ -87,6 +106,8 @@ function App() {
     <div data-theme="logo-theme" className="min-h-screen flex bg-base-300">
       <Toolbar
         onExportPDF={handleExportPDF}
+        onExportJSON={handleExportJSON}
+        onImportJSON={handleImportJSON}
         onThemeChange={setSelectedTheme}
         currentTheme={selectedTheme}
         isGenerating={isGenerating}

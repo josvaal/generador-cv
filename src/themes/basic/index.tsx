@@ -471,11 +471,7 @@ export function BasicDocument({ data }: { data: CVData }) {
       <Page size="A4" style={styles.page} wrap>
         <Header basicInfo={basicInfo} />
         <View style={styles.divider} />
-        
-        {sectionConfig.visibility.skills && (
-          <SkillsSection skills={skills} title={sectionConfig.titles.skills} />
-        )}
-        
+
         {sectionConfig.order.map(section => {
           if (!sectionConfig.visibility[section]) return null
 
@@ -486,6 +482,8 @@ export function BasicDocument({ data }: { data: CVData }) {
               return <ExperienceSection key="experiences" experiences={experiences} title={sectionConfig.titles.experiences} />
             case 'education':
               return <EducationSection key="education" education={education} title={sectionConfig.titles.education} />
+            case 'skills':
+              return <SkillsSection key="skills" skills={skills} title={sectionConfig.titles.skills} />
             case 'projects':
               return <ProjectsSection key="projects" projects={projects} title={sectionConfig.titles.projects} />
             default:

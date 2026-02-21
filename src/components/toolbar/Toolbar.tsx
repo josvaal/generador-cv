@@ -1,10 +1,13 @@
 import type { CVTheme, CVData } from '../../types/cv.types';
 import type { ReactNode } from 'react';
+import { useRef } from 'react';
 import { Lightbulb } from '@phosphor-icons/react';
 import logo from '../../assets/logo.png';
 
 interface ToolbarProps {
   onExportPDF: () => void;
+  onExportJSON: () => void;
+  onImportJSON: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onThemeChange: (themeId: string) => void;
   currentTheme: string;
   isGenerating: boolean;
@@ -12,7 +15,9 @@ interface ToolbarProps {
   cvData: CVData;
 }
 
-export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
+export function Toolbar({ onExportPDF, onExportJSON, onImportJSON, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
   const themeIcons: Record<string, ReactNode> = {
     basic: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -41,6 +46,10 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
       </svg>
     ),
   };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click()
+  }
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-80 bg-base-200/80 backdrop-blur-xl shadow-2xl flex flex-col z-50 border-r border-base-300/50">
@@ -121,6 +130,44 @@ export function Toolbar({ onExportPDF, onThemeChange, currentTheme, isGenerating
                 <span className="text-xs">{theme.name}</span>
               </button>
             ))}
+          </div>
+        </div>
+
+        <div className="form-control w-full">
+          <label className="label pb-1">
+            <span className="label-text font-semibold text-white/90">Datos</span>
+            <span className="label-text-alt text-white/60">Importar/Exportar</span>
+          </label>
+          <div className="flex gap-2">
+            <button
+              className="btn btn-sm flex-1 gap-2 btn-ghost bg-base-100/50 hover:bg-primary/20 border border-base-300/50"
+              onClick={handleImportClick}
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <span className="text-xs">Importar</span>
+            </button>
+            <button
+              className="btn btn-sm flex-1 gap-2 btn-ghost bg-base-100/50 hover:bg-secondary/20 border border-base-300/50"
+              onClick={onExportJSON}
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span className="text-xs">Exportar</span>
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              className="hidden"
+              onChange={onImportJSON}
+            />
           </div>
         </div>
 
