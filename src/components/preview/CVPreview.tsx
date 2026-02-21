@@ -7,6 +7,8 @@ interface CVPreviewProps {
 }
 
 export function CVPreview({ data, theme }: CVPreviewProps) {
+  // Crear una key única basada en los datos para forzar la recarga del PDF
+  const dataKey = JSON.stringify(data.sectionConfig.order)
   if (!theme) {
     return (
       <div className="w-full max-w-2xl mx-auto">
@@ -40,6 +42,7 @@ export function CVPreview({ data, theme }: CVPreviewProps) {
               </div>
             </div>
             <PDFViewer
+              key={dataKey}
               style={{
                 width: '100%',
                 height: 'calc(100vh - 64px)',

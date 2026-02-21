@@ -1,12 +1,13 @@
 import type { CVTheme, CVData } from '../../types/cv.types';
 import type { ReactNode } from 'react';
-import { Lightbulb } from '@phosphor-icons/react';
+import { Lightbulb, Upload, Download, File } from '@phosphor-icons/react';
 import logo from '../../assets/logo.png';
 
 interface ToolbarProps {
   onExportPDF: () => void;
   onExportJSON: () => void;
   onImportClick: () => void;
+  onLoadTemplate: () => void;
   onThemeChange: (themeId: string) => void;
   currentTheme: string;
   isGenerating: boolean;
@@ -14,7 +15,7 @@ interface ToolbarProps {
   cvData: CVData;
 }
 
-export function Toolbar({ onExportPDF, onExportJSON, onImportClick, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
+export function Toolbar({ onExportPDF, onExportJSON, onImportClick, onLoadTemplate, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
   const themeIcons: Record<string, ReactNode> = {
     basic: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -136,25 +137,24 @@ export function Toolbar({ onExportPDF, onExportJSON, onImportClick, onThemeChang
               className="btn btn-sm flex-1 gap-2 btn-ghost bg-base-100/50 hover:bg-primary/20 border border-base-300/50"
               onClick={onImportClick}
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
-              </svg>
+              <Upload size={16} weight="regular" />
               <span className="text-xs">Importar</span>
             </button>
             <button
               className="btn btn-sm flex-1 gap-2 btn-ghost bg-base-100/50 hover:bg-secondary/20 border border-base-300/50"
               onClick={onExportJSON}
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
+              <Download size={16} weight="regular" />
               <span className="text-xs">Exportar</span>
             </button>
           </div>
+          <button
+            className="btn btn-sm w-full gap-2 btn-ghost bg-base-100/50 hover:bg-accent/20 border border-base-300/50"
+            onClick={onLoadTemplate}
+          >
+            <File size={16} weight="regular" />
+            <span className="text-xs">Cargar datos de ejemplo</span>
+          </button>
         </div>
 
         <div className="card bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
@@ -183,11 +183,7 @@ export function Toolbar({ onExportPDF, onExportJSON, onImportClick, onThemeChang
             </>
           ) : (
             <>
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
+              <Download size={20} weight="regular" />
               Descargar CV en PDF
             </>
           )}

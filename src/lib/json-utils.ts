@@ -17,11 +17,15 @@ export function exportCVData(data: CVData): void {
 
 export async function importCVData(file: File): Promise<CVData> {
   const text = await file.text()
-  const data = JSON.parse(text)
+  const data = JSON.parse(text) as CVData
 
   if (!validateCVData(data)) {
     throw new Error('Invalid CV data structure')
   }
+
+  // Normalizar el order para eliminar duplicados
+  const normalizedOrder = Array.from(new Set(data.sectionConfig.order))
+  data.sectionConfig.order = normalizedOrder
 
   return data
 }
