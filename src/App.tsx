@@ -9,9 +9,10 @@ import { modernoTheme } from './themes/moderno'
 import { programadorTheme } from './themes/programador'
 import Toolbar from './components/toolbar/Toolbar'
 import CVPreview from './components/preview/CVPreview'
+import ImportModal from './components/modal/ImportModal'
 import { processGrayscaleImage } from './lib/image-utils'
-import { exportCVData, importCVData } from './lib/json-utils'
-import profilePhoto from './assets/profile.png'
+import { exportCVData } from './lib/json-utils'
+import defaultPhoto from '/pfp.jpg'
 import './App.css'
 
 registerTheme(basicTheme)
@@ -21,6 +22,7 @@ registerTheme(programadorTheme)
 
 function App() {
   const [baseData, setBaseData] = useState<CVData>(cvData as CVData)
+  const [customPhoto, setCustomPhoto] = useState<string | null>(null)
   const [photoGrayscale, setPhotoGrayscale] = useState<string | null>(null)
   const [selectedTheme, setSelectedTheme] = useState(() => {
     if (baseData.activeTheme && getTheme(baseData.activeTheme)) {
@@ -29,18 +31,21 @@ function App() {
     return 'basic'
   })
   const [isGenerating, setIsGenerating] = useState(false)
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false)
+
+  const currentPhoto = customPhoto || defaultPhoto
 
   useEffect(() => {
-    processGrayscaleImage(profilePhoto)
+    processGrayscaleImage(currentPhoto)
       .then(setPhotoGrayscale)
       .catch(console.error)
-  }, [])
+  }, [currentPhoto])
 
   const data: CVData = {
     ...baseData,
     basicInfo: {
       ...baseData.basicInfo,
-      photo: selectedTheme === 'academico' && photoGrayscale ? photoGrayscale : profilePhoto,
+      photo: selectedTheme === 'academico' && photoGrayscale ? photoGrayscale : currentPhoto,
     },
   }
 
@@ -71,18 +76,12 @@ function App() {
     exportCVData(baseData)
   }
 
-  const handleImportJSON = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
+  const handleImportJSON = (data: CVData) => {
+    setBaseData(data)
+  }
 
-    try {
-      const importedData = await importCVData(file)
-      setBaseData(importedData)
-      event.target.value = '' // Resetear input
-    } catch (error) {
-      console.error('Import failed:', error)
-      alert('Error al importar el archivo JSON. Verifica que el formato sea correcto.')
-    }
+  const handleImportPhoto = (photo: string) => {
+    setCustomPhoto(photo)
   }
 
   if (!photoGrayscale) {
@@ -107,7 +106,7 @@ function App() {
       <Toolbar
         onExportPDF={handleExportPDF}
         onExportJSON={handleExportJSON}
-        onImportJSON={handleImportJSON}
+        onImportClick={() => setIsImportModalOpen(true)}
         onThemeChange={setSelectedTheme}
         currentTheme={selectedTheme}
         isGenerating={isGenerating}
@@ -117,6 +116,12 @@ function App() {
       <div className="flex-1 ml-80 p-8 flex justify-center items-start overflow-auto">
         <CVPreview data={data} theme={theme} />
       </div>
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImportJSON={handleImportJSON}
+        onImportPhoto={handleImportPhoto}
+      />
     </div>
   )
 }

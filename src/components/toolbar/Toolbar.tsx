@@ -1,13 +1,12 @@
 import type { CVTheme, CVData } from '../../types/cv.types';
 import type { ReactNode } from 'react';
-import { useRef } from 'react';
 import { Lightbulb } from '@phosphor-icons/react';
 import logo from '../../assets/logo.png';
 
 interface ToolbarProps {
   onExportPDF: () => void;
   onExportJSON: () => void;
-  onImportJSON: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onImportClick: () => void;
   onThemeChange: (themeId: string) => void;
   currentTheme: string;
   isGenerating: boolean;
@@ -15,9 +14,7 @@ interface ToolbarProps {
   cvData: CVData;
 }
 
-export function Toolbar({ onExportPDF, onExportJSON, onImportJSON, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-
+export function Toolbar({ onExportPDF, onExportJSON, onImportClick, onThemeChange, currentTheme, isGenerating, themes, cvData }: ToolbarProps) {
   const themeIcons: Record<string, ReactNode> = {
     basic: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -46,10 +43,6 @@ export function Toolbar({ onExportPDF, onExportJSON, onImportJSON, onThemeChange
       </svg>
     ),
   };
-
-  const handleImportClick = () => {
-    fileInputRef.current?.click()
-  }
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-80 bg-base-200/80 backdrop-blur-xl shadow-2xl flex flex-col z-50 border-r border-base-300/50">
@@ -141,7 +134,7 @@ export function Toolbar({ onExportPDF, onExportJSON, onImportJSON, onThemeChange
           <div className="flex gap-2">
             <button
               className="btn btn-sm flex-1 gap-2 btn-ghost bg-base-100/50 hover:bg-primary/20 border border-base-300/50"
-              onClick={handleImportClick}
+              onClick={onImportClick}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -161,13 +154,6 @@ export function Toolbar({ onExportPDF, onExportJSON, onImportJSON, onThemeChange
               </svg>
               <span className="text-xs">Exportar</span>
             </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".json"
-              className="hidden"
-              onChange={onImportJSON}
-            />
           </div>
         </div>
 
